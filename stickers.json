@@ -1,0 +1,14 @@
+{
+    "fuck-cloudflare-captcha": {
+        "title": "Fuck Cloudflare captcha",
+        "desc": "In protest of [Cloudflare's extreme failure to understand Tor and its users, presenting users with captchas on nearly every page](https://blog.torproject.org/trouble-cloudflare), then [years later releasing a non-solution that puts the burden on site owners to understand Tor](https://support.cloudflare.com/hc/en-us/articles/203306930-Does-Cloudflare-block-Tor-). Design by [shiromarieke](https://github.com/shiromarieke/cloudflare_stuff/blob/master/fuck_cloudflare_1gen.png)."
+    },
+    "fuck-cloudflare": {
+        "title": "Fuck Cloudflare (logotype)",
+        "desc": "In case the captcha isn't clear enough. In protest of Cloudflare's tradition of sitting quietly on their pile of money and not standing up for marginalized users, especially [protecting hate speech](https://www.propublica.org/article/how-cloudflare-helps-serve-up-hate-on-the-web) while [kicking sex workers off their service](https://medium.com/assembly-four/my-six-week-rollercoaster-ride-172eb58ba80e). Design by [iliana](https://cybre.space/@iliana)."
+    },
+    "knuckles": {
+        "title": "& KNUCKLES",
+        "desc": "**Stickers printed on clear vinyl.** Make anything in your life feature Knuckles the Echidna. Design by and stickers courtesy of [doof](https://twitter.com/doofsmack)."
+    }
+}

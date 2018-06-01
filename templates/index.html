@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WOBSCALE STICKER EMPORIUM &amp; KNUCKLES</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+    </head>
+    <body>
+        <h1>WOBSCALE STICKER EMPORIUM &amp;&nbsp;KNUCKLES</h1>
+        {% if errors %}
+        <div class="errors">
+            <p>There are errors! :oh_no:</p>
+            <ul>
+                {% for error in errors %}
+                <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <p><strong>How this works:</strong></p>
+        <ol>
+            <li>You pick how many stickers you want (up to 15)</li>
+            <li>You type in your address and email</li>
+            <li>You click the link in the email to confirm</li>
+            <li>At the blazing speed of post, you get an envelope filled with stickers</li>
+        </ol>
+        <p>Feel free to request stickers again after you've received your first batch (especially if there are new ones you want), although if you submit requests too quickly some of them might be silently cancelled.</p>
+        <p>At no point do you give us money. If you want to give your money somewhere, check out #transcrowdfund on <a href="https://cybre.space/tags/transcrowdfund">Mastodon</a> and <a href="https://twitter.com/hashtag/transcrowdfund?f=tweets&vertical=default&lang=en">Twitter</a>.</p>
+        <p>If you have a sticker design you'd like us to make real, get in contact with iliana at <a href="https://cybre.space/@iliana">@iliana@cybre.space on Mastodon</a>.</p>
+
+        <form method="post">
+            <h2>Choose your stickers</h2>
+            <p>Click thumbnails to see larger images.</p>
+            <table>
+                <tr><th>How many</th><th>Thumbnail</th><th>Description</th></tr>
+                {% for sticker in stickers %}
+                <tr>
+                    <td><input name="{{ sticker }}" type="number" min="0" max="15" value="{{ values[sticker] | default(0) }}"></td>
+                    <td><a href="{{ url_for('static', filename=sticker+'.jpg') }}" target="_blank"><img src="{{ url_for('static', filename=sticker+'@200px.jpg') }}" alt="{{ stickers[sticker].title }} sticker"></a></td>
+                    <td>
+                        <p><strong>{{ stickers[sticker].title }}</strong></p>
+                        {{ stickers[sticker].desc | markdown | safe }}
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+
+            <h2>Tell us where to aim the postal catapult</h2>
+            <p>We can print four lines on the address label. Make them count. Your envelope will be sent from the United States, so you don't need to specify the country if it's sent within the US. <strong>Please check your address before submitting. We do no validation on them.</strong></p>
+            <input name="address" type="text" required placeholder="Hacker alias and/or name" class="address" value="{{ values.getlist('address')[0] | default('') }}">
+            <input name="address" type="text" required placeholder="Street address" class="address" value="{{ values.getlist('address')[1] | default('') }}">
+            <input name="address" type="text" required placeholder="City, state/province, postal code" class="address" value="{{ values.getlist('address')[2] | default('') }}">
+            <input name="address" type="text" placeholder="Country" class="address" value="{{ values.getlist('address')[3] | default('') }}">
+
+            <h2>Enter your email and press the obnoxiously large button</h2>
+            <input name="email" type="email" required placeholder="email@email.email" class="address" value="{{ values.email | default('') }}">
+            <input type="submit" value="I seek (email) validation" class="obnoxiously-large">
+        </form>
+    </body>
+</html>

@@ -1,0 +1,15 @@
+{
+    "prod": {
+        "app_function": "app.app",
+        "aws_region": "us-west-2",
+        "profile_name": "+stickers.wob.app",
+        "project_name": "stickers-wob-app",
+        "runtime": "python3.6",
+        "s3_bucket": "zappa-i8c8wom75",
+        "extra_permissions": [{
+            "Effect": "Allow",
+            "Action": ["ses:SendRawEmail"],
+            "Resource": "*"
+        }]
+    }
+}

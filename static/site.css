@@ -1,0 +1,38 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    max-width: 75ch;
+    margin: 2em auto;
+}
+
+.errors {
+    background-color: #fcc;
+    border: 1px solid #f00;
+    padding: 0 1em;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: .5em;
+}
+
+input.address {
+    display: block;
+    width: 40ch;
+    margin-top: 0.5em;
+}
+
+input.obnoxiously-large {
+    padding: 2em;
+    width: 40ch;
+    margin-top: 0.5em;
+}
