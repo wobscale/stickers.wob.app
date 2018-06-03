@@ -1,12 +1,17 @@
+import base64
 import botocore
 import flask
 import json
 import markdown
+import os
 import uuid
 
 from email.message import EmailMessage
+from flaskext.csrf import csrf
 
 app = flask.Flask(__name__)
+app.secret_key = base64.b64decode(os.environ['SECRET_KEY'])
+csrf(app)
 
 with open('stickers.json') as f:
     STICKERS = json.load(f)
@@ -22,9 +27,39 @@ def markdown_filter(s):
     return markdown.markdown(s)
 
 
+@app.route('/code')
+def agplv3_compliance():
+    context = flask.request.environ.get('lambda.context')
+    session = botocore.session.get_session()
+    client = session.create_client('lambda')
+    code = client.get_function(FunctionName=context.function_name,
+                               Qualifier=context.function_version)
+    return flask.redirect(code['Code']['Location'], code=303)
+
+
 @app.route('/validate/<submission_id>', methods=('GET', 'POST'))
 def validate(submission_id):
-    raise NotImplementedError()
+    session = botocore.session.get_session()
+    s3 = session.create_client('s3')
+
+    if flask.request.method == 'POST' and 'yespls' in flask.request.form:
+        s3.put_object_tagging(
+            Bucket=os.environ['S3_BUCKET'],
+            Key=submission_id,
+            Tagging={'TagSet': [{'Key': 'validated', 'Value': 'yep'}]})
+        return 'your request is validated. you are also valid.'
+    session = botocore.session.get_session()
+    s3 = session.create_client('s3')
+    submission = s3.get_object(
+        Bucket=os.environ['S3_BUCKET'], Key=submission_id)
+    if 'TagCount' in submission and submission['TagCount'] > 0:
+        return "you've already validated your order ^_^"
+    else:
+        submission = json.load(submission['Body'])
+        return flask.render_template(
+            'validate.html',
+            submission=submission,
+            sticker_count=sum(submission[x] for x in STICKERS))
 
 
 @app.route('/', methods=('GET', 'POST'))
@@ -57,7 +92,7 @@ def index():
             ses = session.create_client('ses')
 
             s3.put_object(
-                Bucket='stickers-submissions-352b2c6b-d476-4ab5-8f84-83d9f455ccf9',
+                Bucket=os.environ['S3_BUCKET'],
                 Key=submission_id,
                 Body=json.dumps(data),
                 ContentType='text/plain')
@@ -71,7 +106,11 @@ def index():
 Somebody, hopefully you, requested some stickers to be sent to you!
 
 Please validate your request at:
-""" + flask.url_for('validate', submission_id=submission_id, _external=True))
+{}
+
+If you didn't request this, and you would like to unsubscribe, please
+email iliana@wobscale.website.
+""".format(flask.url_for('validate', submission_id=submission_id, _external=True)))
 
             ses.send_raw_email(RawMessage={'Data': str(msg)})
             return ('A validation email has been sent to you ({}) with a link '

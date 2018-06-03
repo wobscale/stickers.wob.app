@@ -6,9 +6,14 @@
         "project_name": "stickers-wob-app",
         "runtime": "python3.6",
         "s3_bucket": "zappa-i8c8wom75",
+        "certificate_arn": "arn:aws:acm:us-east-1:251317273979:certificate/19baa02e-e497-4456-8141-0b8fdedd63f3",
+        "domain": "stickers.wob.app",
         "extra_permissions": [{
             "Effect": "Allow",
-            "Action": ["ses:SendRawEmail"],
+            "Action": [
+                "ses:SendRawEmail",
+                "lambda:GetFunction"
+            ],
             "Resource": "*"
         }]
     }

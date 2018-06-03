@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>WOBSCALE ORDER VALIDATION &amp; KNUCKLES</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{{ url_for('static', filename='site.css') }}">
+    </head>
+    <body>
+        <h1>WOBSCALE ORDER VALIDATION &amp;&nbsp;KNUCKLES</h1>
+        <p>Your email is: <strong>{{ submission.email }}</strong></p>
+        <p>Your address is:</p>
+        <p>
+            {{ submission.address[0] }}<br>
+            {{ submission.address[1] }}<br>
+            {{ submission.address[2] }}{% if submission.address[3] %}<br>
+            {{ submission.address[3] }}{% endif %}
+        </p>
+        <p>You requested <strong>{{ sticker_count }}</strong> stickers</p>
+        <form method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
+            <input type="submit" name="yespls" value="send the stickers!!" class="obnoxiously-large">
+        </form>
+        <p>(but if you actually don't want them don't click the button and I'll delete your request after a week)</p>
+    </body>
+</html>

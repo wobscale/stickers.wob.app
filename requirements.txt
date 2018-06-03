@@ -1,4 +1,5 @@
 Flask
 Markdown
 botocore
+flask-csrf
 zappa

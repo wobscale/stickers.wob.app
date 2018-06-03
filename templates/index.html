@@ -29,6 +29,7 @@
         <p>If you have a sticker design you'd like us to make real, get in contact with iliana at <a href="https://cybre.space/@iliana">@iliana@cybre.space on Mastodon</a>.</p>
 
         <form method="post">
+            <input type="hidden" name="_csrf_token" value="{{ csrf_token() }}">
             <h2>Choose your stickers</h2>
             <p>Click thumbnails to see larger images.</p>
             <table>
