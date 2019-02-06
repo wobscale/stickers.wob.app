@@ -1,4 +1,8 @@
 {
+    "trainsgender": {
+        "title": "Trainsgender pride flag",
+        "desc": "A pride flag for trans people who love trains. \"Trainsgender\" people, if you will. [Design by Sky Q Rose](https://github.com/skyqrose/trains-trans-flag), printed with permission."
+    },
     "fuck-cloudflare-captcha": {
         "title": "Fuck Cloudflare captcha",
         "desc": "In protest of [Cloudflare's extreme failure to understand Tor and its users, presenting users with captchas on nearly every page](https://blog.torproject.org/trouble-cloudflare), then [years later releasing a non-solution that puts the burden on site owners to understand Tor](https://support.cloudflare.com/hc/en-us/articles/203306930-Does-Cloudflare-block-Tor-). Design by [shiromarieke](https://github.com/shiromarieke/cloudflare_stuff/blob/master/fuck_cloudflare_1gen.png)."
@@ -9,6 +13,6 @@
     },
     "knuckles": {
         "title": "& KNUCKLES",
-        "desc": "**Stickers printed on clear vinyl.** Make anything in your life feature Knuckles the Echidna. Design by and stickers courtesy of [doof](https://twitter.com/doofsmack)."
+        "desc": "**Stickers printed on clear vinyl.** Make anything in your life feature Knuckles the Echidna. Design by and stickers courtesy of [doof](https://twitter.com/doofsmack). Each sheet is two stickers, so if you order an odd number you'll get a cut-in-half sheet."
     }
 }
