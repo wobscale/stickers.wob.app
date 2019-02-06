@@ -39,7 +39,11 @@
                     <td><input name="{{ sticker }}" type="number" min="0" max="15" value="{{ values[sticker] | default(0) }}"></td>
                     <td><a href="{{ url_for('static', filename=sticker+'.jpg') }}" target="_blank"><img src="{{ url_for('static', filename=sticker+'@200px.jpg') }}" alt="{{ stickers[sticker].title }} sticker"></a></td>
                     <td>
-                        <p><strong>{{ stickers[sticker].title }}</strong></p>
+                        <p>
+                            <strong>{{ stickers[sticker].title }}</strong>
+                            <br>
+                            {{ stickers[sticker].width }}&nbsp;<abbr title="millimeters">mm</abbr> &times; {{ stickers[sticker].height }}&nbsp;<abbr title="millimeters">mm</abbr>
+                        </p>
                         {{ stickers[sticker].desc | markdown | safe }}
                     </td>
                 </tr>
