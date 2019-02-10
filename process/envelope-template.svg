@@ -1,0 +1,9 @@
+<svg width="11in" height="8.5in" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <image x="10.125in" y="1.625in" width="0.5in" height="0.5in" xlink:href="@@DATAMATRIX@@" />
+    <text style="font-family: 'Noto Sans'; font-size: 12pt;">
+        <tspan x="5in" y="5in"><![CDATA[@@LINE1@@]]></tspan>
+        <tspan x="5in" dy="1.5em"><![CDATA[@@LINE2@@]]></tspan>
+        <tspan x="5in" dy="1.5em"><![CDATA[@@LINE3@@]]></tspan>
+        <tspan x="5in" dy="1.5em"><![CDATA[@@LINE4@@]]></tspan>
+    </text>
+</svg>
