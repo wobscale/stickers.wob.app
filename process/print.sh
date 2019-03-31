@@ -8,7 +8,7 @@ function finish {
 }
 trap finish EXIT
 
-for uuid in $(aws s3api list-objects-v2 --bucket "$BUCKET" --output text --query Contents[].Key | grep -v '/'); do
+for uuid in $(aws s3api list-objects-v2 --bucket "$BUCKET" --output text --query Contents[].Key | tr '\t' '\n' | grep -v '/'); do
     if aws s3api get-object-tagging --bucket "$BUCKET" --key "$uuid" --output text | grep -q 'validated[[:space:]]\+yep'; then
         aws s3api get-object --bucket "$BUCKET" --key "$uuid" "$WORKDIR/$uuid.json" >/dev/null
         aws s3 mv "s3://$BUCKET/$uuid" "s3://$BUCKET/done/$uuid" 1>&2
